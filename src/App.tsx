@@ -7,11 +7,24 @@ import ProductCard from "./components/ProductCard";
 import CartDetail from "./components/CartDetail";
 import { FileUploader } from "@aws-amplify/ui-react-storage";
 import "@aws-amplify/ui-react/styles.css";
+import { ThemeProvider, Theme } from '@aws-amplify/ui-react';
 // import { list } from "aws-amplify/storage";
 
 const client = generateClient<Schema>();
 
 function App() {
+  const theme: Theme = {
+    name: 'my-theme',
+    tokens: {
+      colors: {
+        font: {
+          primary: { value: '#F472B6' },
+          secondary: { value: '#FB923C' },
+          // ...
+        },
+      },
+    },
+  };
   useEffect(() => {
     client.models.Todo.observeQuery().subscribe({
       // next: (data) => setTodos([...data.items]),
@@ -70,6 +83,7 @@ function App() {
   ];
 
   return (
+    <ThemeProvider theme={theme}>
     <Router>
       <div className="font-sans bg-gray-100">
         {/* Header Section with Cart Icon */}
@@ -100,9 +114,9 @@ function App() {
               {/* Cart Icon with item count */}
               <li className="relative">
                 <Link to="/cart" className="text-white hover:text-gray-200">
-                  <span className="material-icons">shopping_cart</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="10" cy="28" r="2" fill="currentColor"/><circle cx="24" cy="28" r="2" fill="currentColor"/><path fill="currentColor" d="M28 7H5.82L5 2.8A1 1 0 0 0 4 2H0v2h3.18L7 23.2a1 1 0 0 0 1 .8h18v-2H8.82L8 18h18a1 1 0 0 0 1-.78l2-9A1 1 0 0 0 28 7m-2.8 9H7.62l-1.4-7h20.53Z"/></svg>
                   {cart.length > 0 && (
-                    <span className="absolute top-0 right-0 text-sm bg-red-500 text-white rounded-full px-2 py-1">
+                    <span className="absolute top-0 right-0 text-sm bg-red-500 text-white rounded-full px-1 py-1/2">
                       {cart.length}
                     </span>
                   )}
@@ -159,6 +173,7 @@ function App() {
         </Routes>
       </div>
     </Router>
+    </ThemeProvider>
   );
 }
 

@@ -55,7 +55,7 @@ const ProductCard = ({ product, addToCart, isInCart }: any) => {
       {/* Image */}
       {/* <img className="w-full h-64 object-cover rounded-t-lg" src={product.image} alt={product.name} /> */}
 
-      <StorageImage alt="sleepy-cat" path="songs/airbnb.png" />
+      <StorageImage alt="sleepy-cat" path="songs/music.jpg" />
 
       {/* Product Info */}
       <div className="p-6 bg-black rounded-b-lg">

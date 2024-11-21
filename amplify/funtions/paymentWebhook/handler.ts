@@ -56,6 +56,7 @@
 
 import type { APIGatewayProxyHandler } from "aws-lambda";
 import { sendHTMLEmail } from "./sendHTMLEmail";
+import { generateSignedUrl } from "./generateSignedUrl";
 // import {env} from '$amplify/env/main'
 
 export const handler = async (event: any) => {
@@ -63,6 +64,11 @@ export const handler = async (event: any) => {
   const body: any = JSON.parse(event.body)
   console.log(body)
   console.log(body.data.object.customer_details)
+  const url = await generateSignedUrl(
+    'songs',
+    'airbnb.png',
+    36
+)
   await  sendHTMLEmail(
     process.env.VERIFIED_SES_FROM_EMAIL!,
     body.data.object.customer_details.email,
@@ -72,7 +78,7 @@ export const handler = async (event: any) => {
     <body>
     <h1> Hello from My music! </h1>
     <p> Hey ${body.data.object.customer_details.name}, thanks so much for your purchase! </p>
-    <p>Here is <a href="${body.data.object.customer_details.name}">your song </a> Hope you enjoy!</p>
+    <p>Here is <a href="${url}">your song </a> Hope you enjoy!</p>
     </body>
     </html>
     `
