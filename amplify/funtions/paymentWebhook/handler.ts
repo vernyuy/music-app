@@ -62,17 +62,17 @@ export const handler = async (event: any) => {
   console.log("event", event);
   const body: any = JSON.parse(event.body)
   console.log(body)
-  console.log(body.data)
+  console.log(body.data.object.customer_details)
   await  sendHTMLEmail(
     process.env.VERIFIED_SES_FROM_EMAIL!,
-    body.data.customer_details.email,
+    body.data.object.customer_details.email,
     'Your song has arrived',
     `
     <html>
     <body>
     <h1> Hello from My music! </h1>
-    <p> Hey ${body.data.customer_details.name}, thanks so much for your purchase! </p>
-    <p>Here is <a href="${body.data.customer_details.name}">your song </a> Hope you enjoy!</p>
+    <p> Hey ${body.data.object.customer_details.name}, thanks so much for your purchase! </p>
+    <p>Here is <a href="${body.data.object.customer_details.name}">your song </a> Hope you enjoy!</p>
     </body>
     </html>
     `
