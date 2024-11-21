@@ -61,6 +61,8 @@ import { sendHTMLEmail } from "./sendHTMLEmail";
 export const handler = async (event: any) => {
   console.log("event", event);
   const body: any = JSON.parse(event.body)
+  console.log(body)
+  console.log(body.data)
   await  sendHTMLEmail(
     process.env.VERIFIED_SES_FROM_EMAIL!,
     body.data.customer_details.email,
