@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import { StorageImage } from "@aws-amplify/ui-react-storage";
+
 const ProductCard = ({ product, addToCart, isInCart }: any) => {
   return (
     // <div className="max-w-sm rounded-lg overflow-hidden shadow-lg bg-white transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
@@ -52,6 +54,8 @@ const ProductCard = ({ product, addToCart, isInCart }: any) => {
       
       {/* Image */}
       {/* <img className="w-full h-64 object-cover rounded-t-lg" src={product.image} alt={product.name} /> */}
+
+      <StorageImage alt="sleepy-cat" path="songs/airbnb.png" />
 
       {/* Product Info */}
       <div className="p-6 bg-black rounded-b-lg">
