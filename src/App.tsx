@@ -1,12 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import React from 'react';
 import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import ProductCard from "./components/ProductCard";
 import CartDetail from "./components/CartDetail";
-import { FileUploader, StorageImage } from '@aws-amplify/ui-react-storage';
+import { FileUploader } from '@aws-amplify/ui-react-storage';
 import '@aws-amplify/ui-react/styles.css';
+import { uploadData } from 'aws-amplify/storage';
 
 const client = generateClient<Schema>();
 
@@ -34,6 +36,11 @@ function App() {
     setCart([]);
   };
 
+  const [file, setFile]: any = React.useState();
+
+  const handleChange = (event: any) => {
+      setFile(event.target.files[0]);
+  };
   const featuredProducts = [
     { id: 1, name: 'Electric Guitar', price: 499.99, image: 'https://via.placeholder.com/300x200?text=Electric+Guitar' },
     { id: 2, name: 'Acoustic Guitar', price: 299.99, image: 'https://via.placeholder.com/300x200?text=Acoustic+Guitar' },
@@ -74,13 +81,32 @@ function App() {
           {/* Home Page with Product List */}
           <Route path="/" element={
             <section id="shop" className="py-16 bg-white">
- <StorageImage alt="sleepy-cat" path="songs/airbnb.jpg" />
-    <FileUploader
-      acceptedFileTypes={['image/*', 'audio/*']}
+ {/* <StorageImage alt="sleepy-cat" path="songs/airbnb.jpg" /> */}
+    {/* <FileUploader
+      acceptedFileTypes={['image/*', 'video/*']}
       path="/songs/"
-      maxFileCount={1}
+      maxFileCount={3}
       isResumable
-    />
+      autoUpload={false}
+      showThumbnails={true}
+      onUploadStart={({ key }) => {
+        console.log('Hello')
+      }}
+    /> */}
+
+<div>
+            <input type="file" onChange={handleChange} />
+            <button
+                onClick={() =>
+                    uploadData({
+                        path: `photos/${file.name}`,
+                        data: file,
+                    })
+                }
+            >
+                Upload
+            </button>
+        </div>
               <div className="container mx-auto text-center">
                 <h3 className="text-3xl font-bold mb-6">Featured Products</h3>
                 <div className="grid px-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
