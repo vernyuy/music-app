@@ -6,7 +6,7 @@ import { generateClient } from "aws-amplify/data";
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import ProductCard from "./components/ProductCard";
 import CartDetail from "./components/CartDetail";
-import { FileUploader } from '@aws-amplify/ui-react-storage';
+// import { FileUploader } from '@aws-amplify/ui-react-storage';
 import '@aws-amplify/ui-react/styles.css';
 import { uploadData } from 'aws-amplify/storage';
 
