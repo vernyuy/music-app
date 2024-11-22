@@ -1,0 +1,84 @@
+/* Slide-in animation for the whole section */
+@keyframes slideIn {
+    0% {
+      opacity: 0;
+      transform: translateY(100px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-slide-in {
+    animation: slideIn 1s ease-out forwards;
+  }
+  
+  /* Fade-in animation for elements (used on h1, p, buttons) */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 1s ease-out forwards;
+  }
+  
+  /* Wave animation for the soundwave */
+  @keyframes wave {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  .animate-wave {
+    animation: wave 5s infinite linear;
+  }
+  
+  /* Background color animation */
+  @keyframes bgChange {
+    0% {
+      background: linear-gradient(to right, #ec4899, #f97316, #ec4899);
+    }
+    25% {
+      background: linear-gradient(to right, #ec4899, #f97316, #9333ea);
+    }
+    50% {
+      background: linear-gradient(to right, #9333ea, #f97316, #ec4899);
+    }
+    75% {
+      background: linear-gradient(to right, #f97316, #9333ea, #ec4899);
+    }
+    100% {
+      background: linear-gradient(to right, #ec4899, #f97316, #ec4899);
+    }
+  }
+  
+  /* Apply the background animation to the gradient */
+  .animate-bg-change {
+    animation: bgChange 10s ease-in-out infinite;
+  }
+  
+  /* Optional text scaling effect */
+  @keyframes scaleText {
+    0% {
+      transform: scale(0.9);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  /* .animate-scale-text {
+    animation: scaleText 1s ease-out forwards;
+  }
+   */
