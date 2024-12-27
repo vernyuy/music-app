@@ -57,3 +57,22 @@ export const gradients = [
   "linear-gradient(0deg, rgba(251, 191, 36, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%)",
   "linear-gradient(rgba(45, 212, 191, 0.1) 0%, rgba(20, 184, 166, 0.1) 100%)",
 ];
+
+export const imageUrls = [
+  "https://framerusercontent.com/images/4oiaUKzISZ8Q5kZBhZ5EuTzN04.webp",
+  "https://framerusercontent.com/images/azJqPsEnyzR2na7aKzduWe1lk0.webp",
+  "https://framerusercontent.com/images/DwWJRIQee4Jv9tynnYjB71gAKc.webp",
+  "https://framerusercontent.com/images/xLNSJgRXNdbNABYpybyiQax91Cs.webp",
+  "https://framerusercontent.com/images/YT6PC1eptU2iSOys0UpGkvlNUQ.webp",
+  "https://framerusercontent.com/images/UNmGWPwRPeyTAcI0CeTQ4B7T00o.webp",
+  "https://framerusercontent.com/images/KYi3tQs4FDXKswSkEAsfk8aM.webp",
+  "https://framerusercontent.com/images/qPEPdttny7pwuG02XkSqCHj1mY.webp",
+  "https://framerusercontent.com/images/57M40skJ2bD0bhBruO2alErWC4.webp",
+  "https://framerusercontent.com/images/XAlaAsnECrYFyv9sUX8Uxz8oeM.webp",
+  "https://framerusercontent.com/images/IALcdA4hy3H2y90TljZczxUHs8.webp",
+  "https://framerusercontent.com/images/03miqILhTscs5v5RC26VdfGip0.webp",
+  "https://framerusercontent.com/images/4oiaUKzISZ8Q5kZBhZ5EuTzN04.webp",
+  "https://framerusercontent.com/images/azJqPsEnyzR2na7aKzduWe1lk0.webp",
+  "https://framerusercontent.com/images/YT6PC1eptU2iSOys0UpGkvlNUQ.webp",
+  "https://framerusercontent.com/images/UNmGWPwRPeyTAcI0CeTQ4B7T00o.webp",
+];

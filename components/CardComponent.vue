@@ -7,7 +7,7 @@
         !isFullWidth,
     }"
     :style="{ background: gradient }"
-    @click="handleClick"
+    @click="stripePayment"
   >
     <div class="shadow-lg overflow-hidden">
       <img
@@ -30,6 +30,7 @@
 
 <script lang="ts" setup>
 import { defineProps } from "vue";
+import Stripe from "stripe";
 
 // Define props for the card data and gradient
 const props = defineProps<{
@@ -43,8 +44,43 @@ const props = defineProps<{
   isFullWidth: boolean;
 }>();
 
-// Emit a custom event when a card is clicked
-const handleClick = () => {
+const stripePayment = async () => {
   console.log("card-clicked", props.card);
+
+  const stripe = new Stripe(
+    "sk_test_51NVJ4RECpTjJRRCodmsyMIK613vbK0ElhyUwMReszzx6qs8FzZQDdi8VtZ5DjYkn5gNQryjTDMNkf01QLKVwxwTP00DT8HavNL",
+    {
+      typescript: true,
+      //   apiVersion: "2023-10-16",
+    }
+  );
+
+  const items = [
+    {
+      quantity: 1,
+      price_data: {
+        currency: "usd",
+        unit_amount: props.card.amount * 100,
+        product_data: {
+          name: props.card.title,
+          description: props.card.description,
+          images: [props.card.image],
+        },
+      },
+    },
+  ];
+
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ["card"],
+    line_items: items,
+    mode: "payment",
+    success_url: "http://localhost:3000",
+  });
+  if (session.url) {
+    console.log("Success");
+    window.open(session.url, "_blank");
+  } else {
+    console.log("failed");
+  }
 };
 </script>
