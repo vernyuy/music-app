@@ -101,16 +101,18 @@
           <li
             class="md:flex max-md:mt-5 md:items-center justify-center gap-3 max-md:mb-2"
           >
-            <button
+            <NuxtLink
+              to="/auth"
               class="px-6 py-[6px] max-md:w-full font-medium hover:border-white bg-black nd:bg-transparent rounded-full border-[1.8px] border-transparent"
             >
               Log In
-            </button>
-            <button
+            </NuxtLink>
+            <NuxtLink
+              to="/auth"
               class="px-6 max-md:mt-3 py-[6px] max-md:w-full font-medium hover:border-white bg-black nd:bg-transparent rounded-full hover:border-[1.8px] border-[1.5px] border-gray-50 border-opacity-45"
             >
               Sign Up
-            </button>
+            </NuxtLink>
           </li>
         </ul>
       </div>
