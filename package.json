@@ -20,6 +20,11 @@
     "vue-router": "latest"
   },
   "devDependencies": {
+    "@aws-amplify/backend": "^1.11.0",
+    "@aws-amplify/backend-cli": "^1.4.5",
+    "aws-cdk": "^2.173.3",
+    "aws-cdk-lib": "^2.173.3",
+    "constructs": "^10.4.2",
     "typescript": "^5.7.2"
   },
   "optionalDependencies": {
