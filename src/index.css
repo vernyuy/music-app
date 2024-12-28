@@ -1,3 +1,130 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: Druk Wide Bold Bold;
+  src: url(https://framerusercontent.com/assets/jCvdRn9JRjpW5ijmlKhrwURrt0.woff2);
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Druk Wide Bold Bold Placeholder;
+  src: local("Arial");
+  ascent-override: 62.91%;
+  descent-override: 16%;
+  line-gap-override: 1.79%;
+  size-adjust: 161.83%;
+}
+
+@font-face {
+  font-family: GT America Condensed Bold;
+  src: url(https://framerusercontent.com/assets/HGaN3flbHYkIQBbyU2Sny1lSM.woff2);
+  font-display: swap;
+}
+
+@font-face {
+  font-family: GT America Condensed Bold Placeholder;
+  src: local("Arial");
+  ascent-override: 106.77%;
+  descent-override: 21.25%;
+  line-gap-override: 0%;
+  size-adjust: 94.12%;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Other existing CSS */
+.wrapper {
+  width: 90%;
+  max-width: 1536px;
+  margin-inline: auto;
+  position: relative;
+  height: 200px;
+  margin-top: 5rem;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 1) 20%,
+    rgba(0, 0, 0, 1) 80%,
+    rgba(0, 0, 0, 0)
+  );
+}
+
+.item {
+  width: 200px;
+  height: 200px;
+  border-radius: 12px;
+  position: absolute;
+  left: max(calc(200px * 16), 100%);
+  animation-name: scrollLeft;
+  animation-duration: 30s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes scrollLeft {
+  to {
+    left: -200px;
+  }
+}
+
+.heading {
+  font-family: "Druk Wide Bold Bold", "Druk Wide Bold Bold Placeholder",
+    sans-serif;
+}
+.card-title {
+  font-family: "GT America Condensed Bold",
+    "GT America Condensed Bold Placeholder", sans-serif;
+}
+
+/*********************** Amplify button *********************/
+
+div[data-amplify-authenticator] {
+  background-color: black;
+}
+
+.amplify-button--primary {
+  background-color: #b3261e;
+}
+
+.amplify-button--primary:hover {
+  background-color: #991b1b;
+}
+
+.amplify-button--link {
+  color: #b3261e;
+}
+
+.amplify-button--link:hover {
+  background-color: #fee2e2;
+}
+
+label,
+.amplify-tabs__item,
+.amplify-heading,
+.amplify-text {
+  @apply !text-gray-400;
+}
+
+[data-amplify-authenticator] [data-amplify-router] {
+  @apply bg-black;
+}
+.amplify-tabs__item--active {
+  @apply !text-[#b3261e] border-[#b3261e];
+}
+
+.amplify-input {
+  @apply text-gray-300;
+}
+
+.amplify-icon {
+  @apply !text-[#b3261e];
+}

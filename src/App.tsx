@@ -1,17 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from "react";
-import type { Schema } from "../amplify/data/resource";
-import { generateClient } from "aws-amplify/data";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import ProductCard from "./components/ProductCard";
-import CartDetail from "./components/CartDetail";
-// import { FileUploader, StorageImage } from "@aws-amplify/ui-react-storage";
-import "@aws-amplify/ui-react/styles.css";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { ThemeProvider, Theme } from "@aws-amplify/ui-react";
-import Hero from "./components/Hero";
-// import { getUrl, list } from "aws-amplify/storage";
-
-const client = generateClient<Schema>();
+import DefaultLayout from "./layouts/default";
+import Index from "./pages";
+import Explore from "./pages/explore";
+import Auth from "./pages/auth";
 
 function App() {
   const theme: Theme = {
@@ -26,176 +18,19 @@ function App() {
       },
     },
   };
-  useEffect(() => {
-    client.models.Todo.observeQuery().subscribe({
-      // next: (data) => setTodos([...data.items]),
-    });
-    // result()
-    // getUrl("shd")
-  }, []);
-
-  const [cart, setCart]: any[] = useState([]);
-  // const [images, setImages]: any[] = useState([]);
-  // const [videos, setVideos]: any[] = useState([]);
-
-  // Function to handle adding products to the cart
-  const addToCart = (product: any) => {
-    setCart((prevCart: any) => [...prevCart, product]);
-  };
-  // Remove item from the cart
-  const removeFromCart = (productId: any) => {
-    setCart(cart.filter((item: any) => item.id !== productId));
-  };
-
-  // Clear the entire cart
-  const clearCart = () => {
-    setCart([]);
-  };
-
-  //   const result = async () =>{
-  //     console.log("helloo")
-  //     const res = await list({
-  //     path: 'songs/'
-  //   })
-  //   console.log(res.items)
-  //   console.log(res.items[0].path)
-  //   // setImages(res.items)
-  //   // setVideos(res.items.map((item: any)=>item.path.endsWith('.mp4')??item))
-    
-  // }
-
-  // const getUrl = async()=>{
-  //   const res: any = await getUrl({
-  //     path: 'songs/airbnb.png',
-  //   });
-  //   console.log(res)
-  //   return res
-  // }
-  const featuredProducts = [
-    {
-      id: 1,
-      name: "Electric Guitar",
-      price: 499.99,
-      image: "https://via.placeholder.com/300x200?text=Electric+Guitar",
-    },
-    {
-      id: 2,
-      name: "Acoustic Guitar",
-      price: 299.99,
-      image: "https://via.placeholder.com/300x200?text=Acoustic+Guitar",
-    },
-    {
-      id: 3,
-      name: "DJ Turntable",
-      price: 399.99,
-      image: "https://via.placeholder.com/300x200?text=DJ+Turntable",
-    },
-    {
-      id: 4,
-      name: "Headphones",
-      price: 129.99,
-      image: "https://via.placeholder.com/300x200?text=Headphones",
-    },
-  ];
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme} colorMode="dark">
       <Router>
-        <div className="font-sans bg-gray-100">
-          {/* Header Section with Cart Icon */}
-          <header className="bg-gradient-to-r  z-50 sticky top-0 from-purple-500 via-pink-500 to-orange-500 text-white p-6">
-            <nav className="container mx-auto flex justify-between items-center">
-              <h1 className="text-3xl font-bold">MusicShop</h1>
-              <ul className="flex space-x-6">
-                <li>
-                  <Link to="/" className="hover:text-gray-200">
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link to="#shop" className="hover:text-gray-200">
-                    Shop
-                  </Link>
-                </li>
-                {/* Cart Icon with item count */}
-                <li className="relative">
-                  <Link to="/cart" className="text-white hover:text-gray-200">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="32"
-                      height="32"
-                      viewBox="0 0 32 32"
-                    >
-                      <circle cx="10" cy="28" r="2" fill="currentColor" />
-                      <circle cx="24" cy="28" r="2" fill="currentColor" />
-                      <path
-                        fill="currentColor"
-                        d="M28 7H5.82L5 2.8A1 1 0 0 0 4 2H0v2h3.18L7 23.2a1 1 0 0 0 1 .8h18v-2H8.82L8 18h18a1 1 0 0 0 1-.78l2-9A1 1 0 0 0 28 7m-2.8 9H7.62l-1.4-7h20.53Z"
-                      />
-                    </svg>
-                    {cart.length > 0 && (
-                      <span className="absolute top-0 right-0 text-sm bg-red-500 text-white rounded-full px-1 py-1/2">
-                        {cart.length}
-                      </span>
-                    )}
-                  </Link>
-                </li>
-              </ul>
-            </nav>
-          </header>
-
-          {/* Routes */}
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <section id="shop" className="pb-16 bg-white">
-                  <Hero />
-
-                  <div className="container mx-auto text-center">
-                    <h3 className="text-3xl font-bold mb-6">
-                      Featured Products
-                    </h3>
-                    <div className="grid px-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                      {featuredProducts.map((product) => (
-                        <ProductCard
-                          key={product.id}
-                          product={product}
-                          addToCart={addToCart}
-                          isInCart={cart.some(
-                            (item: any) => item.id === product.id
-                          )}
-                        />
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* <div className=" flex justify-center my-12">
-                    <FileUploader
-                      acceptedFileTypes={["image/*", "video/*", ".mp3"]}
-                      path="songs/"
-                      maxFileCount={3}
-                      isResumable
-                      autoUpload={false}
-                      showThumbnails={true}
-                    />
-                  </div> */}
-                </section>
-              }
-            />
-
-            <Route
-              path="/cart"
-              element={
-                <CartDetail
-                  cart={cart}
-                  removeFromCart={removeFromCart}
-                  clearCart={clearCart}
-                />
-              }
-            />
-          </Routes>
-        </div>
+        <DefaultLayout>
+          <div className="w-full overflow-hidden">
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/explore" element={<Explore />} />
+              <Route path="/auth" element={<Auth />} />
+            </Routes>
+          </div>
+        </DefaultLayout>
       </Router>
     </ThemeProvider>
   );
