@@ -69,8 +69,10 @@ function Index() {
           <Carousel />
         </div>
 
-        <div className="p-4 text-5xl tracking-[50px] py-24">
-          LET'S GET EVEN • LET'S GET EVEN • LET'S GET EVEN • LET'S GET EVEN
+        <div className="overflow-hidden">
+          <div className="marquee p-4 text-5xl tracking-[50px] py-24 whitespace-nowrap">
+            LET'S GET EVEN • LET'S GET EVEN • LET'S GET EVEN • LET'S GET EVEN
+          </div>
         </div>
 
         <PayWhatYouWant />
