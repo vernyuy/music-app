@@ -4,8 +4,15 @@ import DefaultLayout from "./layouts/default";
 import Index from "./pages";
 import Explore from "./pages/explore";
 import Auth from "./pages/auth";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 function App() {
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
+
   const theme: Theme = {
     name: "my-theme",
     tokens: {

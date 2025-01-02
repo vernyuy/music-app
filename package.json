@@ -16,6 +16,7 @@
     "@aws-sdk/s3-request-presigner": "^3.698.0",
     "@stripe/react-stripe-js": "^2.3.1",
     "@stripe/stripe-js": "^2.1.9",
+    "aos": "^2.3.4",
     "aws-amplify": "^6.9.0",
     "aws-sdk": "^2.1692.0",
     "axios": "^1.5.1",

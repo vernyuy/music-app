@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/logo.png";
+import { fetchAuthSession, signOut } from "aws-amplify/auth";
+import { Hub } from "aws-amplify/utils";
 
 const Header: React.FC = () => {
   const [showMenu, setShowMenu] = useState<boolean>(true);
+  const [signIn, setSignIn] = useState(false);
   const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
 
   // Methods
@@ -35,6 +38,48 @@ const Header: React.FC = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, [screenWidth]);
+
+  const handleAuthentication = async () => {
+    try {
+      const { accessToken } = (await fetchAuthSession()).tokens ?? {};
+      if (accessToken === undefined) {
+        setSignIn(false);
+        localStorage.setItem("authEvent", "false");
+      } else {
+        setSignIn(true);
+        localStorage.setItem("authEvent", "true");
+      }
+    } catch (error) {
+      //
+    }
+  };
+
+  const listener = (data: any) => {
+    const { event } = data.payload;
+    if (event == "signedIn") {
+      setSignIn(true);
+      localStorage.setItem("authEvent", "true");
+    }
+    if (event == "signedOut") {
+      setSignIn(false);
+      localStorage.setItem("authEvent", "false");
+    }
+    handleAuthentication();
+  };
+
+  useEffect(() => {
+    handleAuthentication();
+    Hub.listen("auth", listener);
+  }, []);
+
+  const handleSignOut = async () => {
+    try {
+      handleAuthentication();
+      await signOut();
+    } catch (error) {
+      //
+    }
+  };
 
   return (
     <nav
@@ -123,20 +168,32 @@ const Header: React.FC = () => {
                 </Link>
               </li>
               <li className="h-5 hidden md:block bg-gray-50 w-[1.5px] bg-opacity-30"></li>
-              <li className="md:flex max-md:mt-5 md:items-center justify-center gap-3 max-md:mb-2">
-                <Link
-                  to="/auth"
-                  className="px-6 py-[6px] max-md:w-full font-medium hover:border-white bg-black rounded-full border-[1.8px] border-transparent"
-                >
-                  Log In
-                </Link>
-                <Link
-                  to="/auth"
-                  className="px-6 max-md:mt-3 py-[6px] max-md:w-full font-medium hover:border-white bg-black rounded-full hover:border-[1.8px] border-[1.5px] border-gray-50 border-opacity-45"
-                >
-                  Sign Up
-                </Link>
-              </li>
+
+              {signIn ? (
+                <li className="max-md:mt-5 max-md:mb-2">
+                  <button
+                    className="px-6 max-md:mt-3 py-[6px] max-md:w-full font-medium hover:border-white bg-black rounded-full hover:border-[1.8px] border-[1.5px] border-gray-50 border-opacity-45"
+                    onClick={() => handleSignOut()}
+                  >
+                    Sign Out
+                  </button>
+                </li>
+              ) : (
+                <li className="md:flex max-md:mt-5 md:items-center justify-center gap-3 max-md:mb-2">
+                  <Link
+                    to="/auth"
+                    className="px-6 py-[6px] max-md:w-full font-medium hover:border-white bg-black rounded-full border-[1.8px] border-transparent"
+                  >
+                    Log In
+                  </Link>
+                  <Link
+                    to="/auth"
+                    className="px-6 max-md:mt-3 py-[6px] max-md:w-full font-medium hover:border-white bg-black rounded-full hover:border-[1.8px] border-[1.5px] border-gray-50 border-opacity-45"
+                  >
+                    Sign Up
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
         )}

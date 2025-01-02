@@ -46,7 +46,7 @@ const CardComponent: React.FC<CardProps> = ({
       payment_method_types: ["card"],
       line_items: items,
       mode: "payment",
-      success_url: "http://localhost:3000",
+      success_url: "https://main.d1v0kcm3kpz2cc.amplifyapp.com",
     });
 
     if (session.url) {
