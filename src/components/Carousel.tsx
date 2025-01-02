@@ -77,12 +77,12 @@ const Carousel: React.FC = () => {
         className="flex sm:flex-row gap-6 flex-col overflow-x-scroll scrollbar-hide scroll-smooth"
       >
         {cards.map((card, index) => (
-          <CardComponent
-            key={index}
-            card={card}
-            gradient={gradients[index]}
-            isFullWidth={false}
-          />
+            <CardComponent
+              key={index}
+              card={card}
+              gradient={gradients[index]}
+              isFullWidth={false}
+            />
         ))}
       </div>
 

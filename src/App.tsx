@@ -28,6 +28,7 @@ function App() {
               <Route path="/" element={<Index />} />
               <Route path="/explore" element={<Explore />} />
               <Route path="/auth" element={<Auth />} />
+              <Route path="/artist/:artistId" element={<Explore />} />
             </Routes>
           </div>
         </DefaultLayout>

@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import Logo from "../assets/logo.png";
 
-const Header: React.FC = () => {
+interface HeaderProps {}
+
+const Header: React.FC= () => {
   const [showMenu, setShowMenu] = useState<boolean>(true);
   const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
 
+  const navigate = useNavigate(); 
   // Methods
   const handleResize = () => {
     const currentWidth = window.innerWidth;
@@ -23,18 +26,22 @@ const Header: React.FC = () => {
     setShowMenu(!showMenu);
   };
 
-  // Lifecycle Hooks
+  const location = useLocation();
+
   useEffect(() => {
     window.addEventListener("resize", handleResize);
-
     if (screenWidth <= 767) {
       setShowMenu(false);
     }
-
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, [screenWidth]);
+
+  const openChat = (): void => {
+    const artistId = localStorage.getItem('artistId')
+    navigate(`/artist/${artistId}`, { state: { openChat: true } });
+  };
 
   return (
     <nav
@@ -62,12 +69,15 @@ const Header: React.FC = () => {
                 <span className="hidden group-hover:block bg-red-500 h-[3px] w-10 rounded-full mt-[2px]"></span>
               </div>
             </li>
-            <button className="group text-center font-medium">
-              <span>Chats</span>
-              <div className="w-full flex justify-center">
-                <span className="hidden group-hover:block bg-red-500 h-[3px] w-10 rounded-full mt-[2px]"></span>
-              </div>
-            </button>
+            {
+              location.pathname.startsWith("/artist/")?
+              <button onClick={openChat} className="group text-center font-medium">
+                <span>Chats</span>
+                <div className="w-full flex justify-center">
+                  <span className="hidden group-hover:block bg-red-500 h-[3px] w-10 rounded-full mt-[2px]"></span>
+                </div>
+              </button>: <></>
+            }
           </ul>
         </div>
 

@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Stripe from "stripe";
 
 interface CardProps {
@@ -17,6 +18,9 @@ const CardComponent: React.FC<CardProps> = ({
   gradient,
   isFullWidth,
 }) => {
+
+  const navigate = useNavigate();
+
   const stripePayment = async () => {
     console.log("card-clicked", card);
 
@@ -57,6 +61,10 @@ const CardComponent: React.FC<CardProps> = ({
     }
   };
 
+  const openChat = (): void => {
+    localStorage.setItem( 'artistId', card.title)
+    navigate(`/artist/${card.title}`, { state: { openChat: false } });
+  };
   return (
     <div
       className={`flex-shrink-0 p-4 snap-center rounded-xl hover:cursor-pointer ${
@@ -65,7 +73,8 @@ const CardComponent: React.FC<CardProps> = ({
           : "sm:w-1/2 md:w-[calc((100%-32px)/2.5)] lg:w-[calc((100%-32px)/3.5)]"
       }`}
       style={{ background: gradient }}
-      onClick={stripePayment}
+      // onClick={stripePayment}
+      onClick={openChat}
     >
       <div className="shadow-lg overflow-hidden">
         <img
