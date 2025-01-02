@@ -62,6 +62,12 @@ const Header: React.FC = () => {
                 <span className="hidden group-hover:block bg-red-500 h-[3px] w-10 rounded-full mt-[2px]"></span>
               </div>
             </li>
+            <button className="group text-center font-medium">
+              <span>Chats</span>
+              <div className="w-full flex justify-center">
+                <span className="hidden group-hover:block bg-red-500 h-[3px] w-10 rounded-full mt-[2px]"></span>
+              </div>
+            </button>
           </ul>
         </div>
 

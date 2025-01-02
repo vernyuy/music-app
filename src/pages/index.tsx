@@ -1,6 +1,7 @@
 import Carousel from "../components/Carousel";
 import PayWhatYouWant from "../components/PayWhatYouWant";
 import { imageUrls } from "../assets/constants";
+import MessageComponent from "../components/MessageComponent";
 
 function Index() {
   const calcAnimationDelay = (index: number) => {

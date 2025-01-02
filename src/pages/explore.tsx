@@ -1,5 +1,6 @@
 import CardComponent from "../components/CardComponent";
 import { cards, gradients } from "../assets/constants";
+import MessageComponent from "../components/MessageComponent";
 
 function Explore() {
   return (
@@ -30,6 +31,8 @@ function Explore() {
           </div>
         </div>
       </div>
+
+          <MessageComponent/>
     </div>
   );
 }
