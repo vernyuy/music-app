@@ -43,7 +43,7 @@ function Explore() {
         </div>
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident, vel.
         { <p className="p-40">Chat is open: {openChat.toString()}</p>}
-            <MessageComponent chatOpen={openChat} artistId={artistId}/>
+            <MessageComponent chatOpen={openChat} artistId={artistId!}/>
       </div>
     );
   }else{

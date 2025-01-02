@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Stripe from "stripe";
+// import Stripe from "stripe";
 
 interface CardProps {
   card: {
@@ -21,45 +21,45 @@ const CardComponent: React.FC<CardProps> = ({
 
   const navigate = useNavigate();
 
-  const stripePayment = async () => {
-    console.log("card-clicked", card);
+  // const stripePayment = async () => {
+  //   console.log("card-clicked", card);
 
-    const stripe = new Stripe(
-      "sk_test_51NVJ4RECpTjJRRCodmsyMIK613vbK0ElhyUwMReszzx6qs8FzZQDdi8VtZ5DjYkn5gNQryjTDMNkf01QLKVwxwTP00DT8HavNL",
-      {
-        typescript: true,
-      }
-    );
+  //   const stripe = new Stripe(
+  //     "sk_test_51NVJ4RECpTjJRRCodmsyMIK613vbK0ElhyUwMReszzx6qs8FzZQDdi8VtZ5DjYkn5gNQryjTDMNkf01QLKVwxwTP00DT8HavNL",
+  //     {
+  //       typescript: true,
+  //     }
+  //   );
 
-    const items = [
-      {
-        quantity: 1,
-        price_data: {
-          currency: "usd",
-          unit_amount: card.amount * 100,
-          product_data: {
-            name: card.title,
-            description: card.description,
-            images: [card.image],
-          },
-        },
-      },
-    ];
+  //   const items = [
+  //     {
+  //       quantity: 1,
+  //       price_data: {
+  //         currency: "usd",
+  //         unit_amount: card.amount * 100,
+  //         product_data: {
+  //           name: card.title,
+  //           description: card.description,
+  //           images: [card.image],
+  //         },
+  //       },
+  //     },
+  //   ];
 
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card"],
-      line_items: items,
-      mode: "payment",
-      success_url: "http://localhost:5173",
-    });
+  //   const session = await stripe.checkout.sessions.create({
+  //     payment_method_types: ["card"],
+  //     line_items: items,
+  //     mode: "payment",
+  //     success_url: "http://localhost:5173",
+  //   });
 
-    if (session.url) {
-      console.log("Success");
-      window.open(session.url, "_blank");
-    } else {
-      console.log("Failed");
-    }
-  };
+  //   if (session.url) {
+  //     console.log("Success");
+  //     window.open(session.url, "_blank");
+  //   } else {
+  //     console.log("Failed");
+  //   }
+  // };
 
   const openChat = (): void => {
     localStorage.setItem( 'artistId', card.title)

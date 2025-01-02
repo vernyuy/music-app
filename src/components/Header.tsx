@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Logo from "../assets/logo.png";
 
-interface HeaderProps {}
 
 const Header: React.FC= () => {
   const [showMenu, setShowMenu] = useState<boolean>(true);

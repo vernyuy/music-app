@@ -13,7 +13,7 @@ interface MessageComponentProps {
 
 const MessageComponent: FunctionComponent<MessageComponentProps> = ({ chatOpen, artistId }) => {
   // State hooks
-  const [isOpen, setIsOpen] = useState(chatOpen);
+  const isOpen = chatOpen;
   const [message, setMessage] = useState("");
   const [userInfo, setUserInfo] = useState<{ loginId: string; authFlowType: string }>({
     loginId: "",

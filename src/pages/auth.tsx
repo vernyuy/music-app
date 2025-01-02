@@ -31,6 +31,7 @@ function Auth() {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const listener = (data: any) => {
     const { event } = data.payload;
     if (event == "signedIn") {
