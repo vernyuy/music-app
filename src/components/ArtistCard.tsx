@@ -16,9 +16,9 @@ const ArtistCard: React.FC<artistProps> = ({
   isFullWidth,
 }) => {
   const navigate = useNavigate();
-  const stripePayment = async (id: number) => {
-    navigate(`/artist/${id}`);
-    console.log("artist-clicked", artist);
+  const moveTo = async (id: number) => {
+    localStorage.setItem("artistId", `${id}`);
+    navigate(`/artist/${id}`, { state: { openChat: false } });
   };
 
   return (
@@ -31,7 +31,7 @@ const ArtistCard: React.FC<artistProps> = ({
           : "sm:w-1/2 md:w-[calc((100%-32px)/2.5)] lg:w-[calc((100%-32px)/3.5)]"
       }`}
       style={{ background: gradient }}
-      onClick={() => stripePayment(artist.id)}
+      onClick={() => moveTo(artist.id)}
     >
       <div className="shadow-lg overflow-hidden">
         <img

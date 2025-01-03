@@ -71,11 +71,12 @@ const CardComponent: React.FC<CardProps> = ({
   return (
     <div
       data-aos="zoom-in-up"
-      className={`flex-shrink-0 p-4 snap-center rounded-xl hover:cursor-pointer ${
-        isFullWidth
-          ? "w-full"
-          : "sm:w-1/2 md:w-[calc((100%-32px)/2.5)] lg:w-[calc((100%-32px)/3.5)]"
-      }`}
+      className={`flex-shrink-0 p-4 snap-center rounded-xl
+         ${
+           isFullWidth
+             ? "w-full"
+             : "sm:w-1/2 md:w-[calc((100%-32px)/2.5)] lg:w-[calc((100%-32px)/3.5)]"
+         }`}
       style={{ background: gradient }}
       // onClick={stripePayment}
       // onClick={openChat}
@@ -97,7 +98,7 @@ const CardComponent: React.FC<CardProps> = ({
           <button
             onClick={stripePayment}
             disabled={loading}
-            className="mt-5  w-full py-2 px-4 bg-[#131313] text-white text-lg  rounded-full hover:bg-[#444] transition"
+            className="mt-5  w-full cursor-pointer py-2 px-4 bg-[#131313] text-white text-lg  rounded-full hover:bg-[#444] transition"
           >
             {loading ? (
               <div className="flex justify-center items-center py-1">

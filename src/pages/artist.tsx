@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { musics, artists, gradients } from "../assets/constants";
-import { Link, useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import CardComponent from "../components/CardComponent";
+import MessageComponent from "../components/MessageComponent";
 
 const Artist: React.FC = () => {
   interface CardProps {
@@ -10,33 +11,37 @@ const Artist: React.FC = () => {
     image: string;
   }
 
-  const [artistId, setArtistId] = useState(0);
+  const location = useLocation();
+  const [openChat, setOpenChat] = useState(false);
+  const [artistId, setArtistId] = useState("0");
   const [currentArtist, setCurrentArtist] = useState<CardProps | null>(null);
   const { id } = useParams<{ id: string }>();
 
   // Set artistId only when id changes
   useEffect(() => {
     if (id) {
-      setArtistId(parseInt(id) - 1);
-      setCurrentArtist(artists[artistId]);
+      setArtistId((parseInt(id) - 1).toString());
+      setCurrentArtist(artists[parseInt(artistId)]);
     }
   }, [id, artistId]);
 
   useEffect(() => {
+    setOpenChat(location.state?.openChat);
+  }, [location.state?.openChat, openChat]);
+
+  useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
-
-  console.log(currentArtist);
 
   return (
     <>
       <div className="w-full pt-12 md:pt-40">
         <div className="w-full">
           <div className="w-full px-8 flex justify-center items-center">
-            <div className="border-red-800 border-[3px] p-3.5 md:p-5 max-w-screen-lg w-full rounded-3xl">
+            <div className="border-red-800 border-[3px] p-3 md:p-5 max-w-screen-lg w-full rounded-3xl">
               <div
                 data-aos="fade-right"
-                className={`w-full max-w-screen-lg  rounded-3xl flex items-center py-24 md:py-32 bg-cover bg-center relative`}
+                className={`w-full max-w-screen-lg  rounded-3xl flex items-center py-16 md:py-32 bg-cover bg-center relative`}
                 style={{
                   backgroundImage: `url(${currentArtist?.image})`,
                 }}
@@ -53,11 +58,12 @@ const Artist: React.FC = () => {
                     </h1>
 
                     <div data-aos="fade-up" className="flex justify-center">
-                      <Link to="/">
-                        <div className="px-8 lg:px-12 text-sm heading uppercase bg-black bg-opacity-55 max-w-xs py-1.5 md:py-[12px] lg:font-medium border-red-700 rounded-full border-[1.8px]">
-                          Join my Community
-                        </div>
-                      </Link>
+                      <button
+                        onClick={() => setOpenChat(true)}
+                        className="px-8 lg:px-12 text-sm heading uppercase bg-black bg-opacity-55 max-w-xs py-1.5 md:py-[12px] lg:font-medium border-red-700 rounded-full border-[1.8px]"
+                      >
+                        Open Chat
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -84,7 +90,7 @@ const Artist: React.FC = () => {
           <div className="w-full flex items-center justify-center pt-14 md:pt-20">
             {/* Grid Container */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-7xl px-6">
-              {musics[artistId]?.map((artist, index) => (
+              {musics[parseInt(artistId)]?.map((artist, index) => (
                 <CardComponent
                   key={index}
                   card={artist}
@@ -95,6 +101,9 @@ const Artist: React.FC = () => {
             </div>
           </div>
         </div>
+
+        {<p className="p-40">Chat is open: {openChat.toString()}</p>}
+        <MessageComponent chatOpen={openChat} artistId={artistId} />
       </div>
     </>
   );
