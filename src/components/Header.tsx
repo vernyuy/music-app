@@ -35,7 +35,7 @@ const Header: React.FC = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [handleResize, screenWidth]);
+  }, []);
 
   const handleAuthentication = async () => {
     const val = localStorage.getItem("authEvent");
@@ -71,7 +71,7 @@ const Header: React.FC = () => {
   useEffect(() => {
     handleAuthentication();
     Hub.listen("auth", listener);
-  }, [listener]);
+  }, []);
 
   const handleSignOut = async () => {
     try {
@@ -108,7 +108,7 @@ const Header: React.FC = () => {
           type="button"
           aria-label="Toggle Menu"
           className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden"
-          onClick={toggleMenu}
+          onClick={() => toggleMenu()}
         >
           {!showMenu ? (
             <div className="flex flex-col justify-between w-24 cursor-pointer">
@@ -136,7 +136,7 @@ const Header: React.FC = () => {
 
         {showMenu && (
           <div className="w-full lg:block lg:w-auto overflow-hidden transition-all ease-in-out duration-200">
-            <ul className="font-medium lg:flex lg:items-center flex flex-col py-4 lg:p-0 mt-4 rounded-lg lg:flex-row lg:space-x-6 rtl:space-x-reverse lg:mt-0 lg:border-0">
+            <ul className="font-medium lg:flex lg:items-center flex flex-col max-lg:space-y-4 py-4 lg:p-0 mt-4 rounded-lg lg:flex-row lg:space-x-6 rtl:space-x-reverse lg:mt-0 lg:border-0">
               <li className="hidden max-lg:block">
                 <Link
                   to="/explore"
