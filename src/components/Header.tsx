@@ -140,32 +140,17 @@ const Header: React.FC = () => {
               <li className="hidden max-lg:block">
                 <Link
                   to="/explore"
-                  className="lg:px-6 max-lg:text-2xl lg:bg-black py-[6px] font-bold lg:font-medium hover:border-white rounded-full border-[1.8px] border-transparent"
+                  className="lg:px-6 max-lg:text-2xl lg:bg-black py-[6px] font-bold lg:font-medium lg:hover:border-white rounded-full border-[1.8px] border-transparent"
                 >
                   Explore
                 </Link>
               </li>
-              {/* <li className="hidden max-lg:block my-4">
-                <Link
-                  to="/"
-                  className="lg:px-6 max-lg:text-2xl lg:bg-black py-[6px] font-bold lg:font-medium hover:border-white rounded-full border-[1.8px] border-transparent"
-                >
-                  My Library
-                </Link>
-              </li> */}
+
               <li className="gap-2 lg:flex block max-lg:space-y-4">
-                {/* <div>
-                  <Link
-                    to="/"
-                    className="lg:px-6 max-lg:text-2xl lg:bg-black py-[6px] font-bold lg:font-medium hover:border-white rounded-full border-[1.8px] border-transparent"
-                  >
-                    Join our Community
-                  </Link>
-                </div> */}
                 <div>
                   <Link
                     to="/artists"
-                    className="lg:px-6 max-lg:text-2xl lg:bg-black py-[6px] font-bold lg:font-medium hover:border-white rounded-full border-[1.8px] border-transparent"
+                    className="lg:px-6 max-lg:text-2xl lg:bg-black py-[6px] font-bold lg:font-medium lg:hover:border-white rounded-full border-[1.8px] border-transparent"
                   >
                     Artists
                   </Link>
