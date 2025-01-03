@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import Stripe from "stripe";
-// import Stripe from "stripe";
 
 interface CardProps {
   card: {
@@ -20,7 +19,7 @@ const CardComponent: React.FC<CardProps> = ({
   isFullWidth,
 }) => {
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const stripePayment = async () => {
     setLoading(true);
@@ -65,10 +64,10 @@ const CardComponent: React.FC<CardProps> = ({
     setLoading(false);
   };
 
-  const openChat = (): void => {
-    localStorage.setItem("artistId", card.title);
-    navigate(`/artist/${card.title}`, { state: { openChat: false } });
-  };
+  // const openChat = (): void => {
+  //   localStorage.setItem("artistId", card.title);
+  //   navigate(`/artist/${card.title}`, { state: { openChat: false } });
+  // };
   return (
     <div
       data-aos="zoom-in-up"
@@ -79,7 +78,7 @@ const CardComponent: React.FC<CardProps> = ({
       }`}
       style={{ background: gradient }}
       // onClick={stripePayment}
-      onClick={openChat}
+      // onClick={openChat}
     >
       <div className="shadow-lg overflow-hidden">
         <img
