@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Logo from "../assets/logo.png";
 import { fetchAuthSession, signOut } from "aws-amplify/auth";
 import { Hub } from "aws-amplify/utils";
@@ -26,14 +26,13 @@ const Header: React.FC = () => {
     setShowMenu(!showMenu);
   };
 
-  // Lifecycle Hooks
+  // const location = useLocation();
+
   useEffect(() => {
     window.addEventListener("resize", handleResize);
-
     if (screenWidth <= 767) {
       setShowMenu(false);
     }
-
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -101,12 +100,20 @@ const Header: React.FC = () => {
                 </div>
               </Link>
             </li>
-            {/* <li className="group text-center font-medium">
-              <span>My Library</span>
-              <div className="w-full flex justify-center">
-                <span className="hidden group-hover:block bg-red-500 h-[3px] w-10 rounded-full mt-[2px]"></span>
-              </div>
-            </li> */}
+
+            {/* {location.pathname.startsWith("/artist/") ? (
+              <button
+                onClick={openChat}
+                className="group text-center font-medium"
+              >
+                <span>Chats</span>
+                <div className="w-full flex justify-center">
+                  <span className="hidden group-hover:block bg-red-500 h-[3px] w-10 rounded-full mt-[2px]"></span>
+                </div>
+              </button>
+            ) : (
+              <></>
+            )} */}
           </ul>
         </div>
 

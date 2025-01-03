@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Stripe from "stripe";
+// import Stripe from "stripe";
 
 interface CardProps {
   card: {
@@ -17,13 +19,12 @@ const CardComponent: React.FC<CardProps> = ({
   gradient,
   isFullWidth,
 }) => {
-  const [loading, setLoading] = useState(false); // Step 1: Create a loading state
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const stripePayment = async () => {
-    console.log("card-clicked", card);
-
-    // Step 2: Disable button and show loader
     setLoading(true);
+    console.log("card-clicked", card);
 
     const stripe = new Stripe(
       "sk_test_51NVJ4RECpTjJRRCodmsyMIK613vbK0ElhyUwMReszzx6qs8FzZQDdi8VtZ5DjYkn5gNQryjTDMNkf01QLKVwxwTP00DT8HavNL",
@@ -47,28 +48,27 @@ const CardComponent: React.FC<CardProps> = ({
       },
     ];
 
-    try {
-      const session = await stripe.checkout.sessions.create({
-        payment_method_types: ["card"],
-        line_items: items,
-        mode: "payment",
-        success_url: "https://main.d1v0kcm3kpz2cc.amplifyapp.com",
-      });
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      line_items: items,
+      mode: "payment",
+      success_url: "http://localhost:5173",
+    });
 
-      if (session.url) {
-        console.log("Success");
-        window.open(session.url, "_blank");
-      } else {
-        console.log("Failed");
-      }
-    } catch (error) {
-      console.error("Stripe payment error: ", error);
-    } finally {
-      // Step 3: Reset loading state after payment attempt
-      setLoading(false);
+    if (session.url) {
+      console.log("Success");
+      window.open(session.url, "_blank");
+    } else {
+      console.log("Failed");
     }
+
+    setLoading(false);
   };
 
+  const openChat = (): void => {
+    localStorage.setItem("artistId", card.title);
+    navigate(`/artist/${card.title}`, { state: { openChat: false } });
+  };
   return (
     <div
       data-aos="zoom-in-up"
@@ -78,6 +78,8 @@ const CardComponent: React.FC<CardProps> = ({
           : "sm:w-1/2 md:w-[calc((100%-32px)/2.5)] lg:w-[calc((100%-32px)/3.5)]"
       }`}
       style={{ background: gradient }}
+      // onClick={stripePayment}
+      onClick={openChat}
     >
       <div className="shadow-lg overflow-hidden">
         <img

@@ -39,6 +39,7 @@ function App() {
               <Route path="/artists" element={<Artists />} />
               <Route path="/artist/:id" element={<Artist />} />
               <Route path="/auth" element={<Auth />} />
+              <Route path="/artist/:artistId" element={<Explore />} />
             </Routes>
           </div>
         </DefaultLayout>
