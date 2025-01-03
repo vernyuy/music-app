@@ -129,7 +129,7 @@ const closeChat = () => {
                 {messages.map(({ id, content, senderId }) => (
                   <>
                     {senderId === userInfo.loginId ? (
-                      <div className="flex justify-end pr-4">
+                      <div className="flex justify-end pr-4 mt-2">
                         <div key={id} className="flex justify-end">
                           <div className="mx-2 p-1 rounded-md border-[0.5px] border-gray-400/40 mb-2 max-w-[300px]">
                             <p className="">{content}</p>
@@ -153,7 +153,7 @@ const closeChat = () => {
                     ) : (
                       <div
                         key={id}
-                        className="mx-2 p-1 rounded-md border-[0.5px] border-gray-400/40 my-2 w-fit  max-w-[300px]"
+                        className="mx-2 p-1 rounded-md border-[0.5px] border-gray-400/40 my-2 w-fit  max-w-[300px] mt-2"
                       >
                         <p>{content}</p>
                       </div>
