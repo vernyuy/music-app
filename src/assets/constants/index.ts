@@ -74,36 +74,11 @@ export const musics = [
         "Get exclusive access to new music from your favorite artists...",
       amount: Math.floor(Math.random() * (1000 - 200 + 1)) + 200 + 0.99,
     },
-    {
-      image:
-        "https://framerusercontent.com/images/wh6m87pn6Su0ebn9tWiTf04pZlI.png?scale-down-to=512",
-      title: "Music Four",
-      description:
-        "Get exclusive access to new music from your favorite artists...",
-      amount: Math.floor(Math.random() * (1000 - 200 + 1)) + 200 + 0.99,
-    },
-    {
-      image:
-        "https://framerusercontent.com/images/JK25gXVlc0Gvhmz3TmtgyxkyB9U.png?scale-down-to=512",
-      title: "Music Five",
-      description:
-        "Get exclusive access to new music from your favorite artists...",
-      amount: Math.floor(Math.random() * (1000 - 200 + 1)) + 200 + 0.99,
-    },
-    {
-      image:
-        "https://framerusercontent.com/images/AqMixhYJ4FV8elnBNDSg2MYwKbQ.png?scale-down-to=512",
-      title: "Music Six",
-      description:
-        "Get exclusive access to new music from your favorite artists...",
-      amount: Math.floor(Math.random() * (1000 - 200 + 1)) + 200 + 0.99,
-    },
   ],
-
   [
     {
       image:
-        "https://framerusercontent.com/images/hvIbA5nxEafqpACqreLnQisvQ.png?scale-down-to=512",
+        "https://framerusercontent.com/images/wh6m87pn6Su0ebn9tWiTf04pZlI.png?scale-down-to=512",
       title: "Music One",
       description:
         "Get exclusive access to new music from your favorite artists...",
@@ -111,7 +86,7 @@ export const musics = [
     },
     {
       image:
-        "https://framerusercontent.com/images/wuUVJDdfH0XezYKS6g3P4VC1o.png?scale-down-to=512",
+        "https://framerusercontent.com/images/JK25gXVlc0Gvhmz3TmtgyxkyB9U.png?scale-down-to=512",
       title: "Music Two",
       description:
         "Get exclusive access to new music from your favorite artists...",
@@ -119,32 +94,8 @@ export const musics = [
     },
     {
       image:
-        "https://framerusercontent.com/images/chp0Kuf8Urv64W6fbzkzsCX0J8.png?scale-down-to=512",
-      title: "Music Three",
-      description:
-        "Get exclusive access to new music from your favorite artists...",
-      amount: Math.floor(Math.random() * (1000 - 200 + 1)) + 200 + 0.99,
-    },
-    {
-      image:
-        "https://framerusercontent.com/images/wh6m87pn6Su0ebn9tWiTf04pZlI.png?scale-down-to=512",
-      title: "Music Four",
-      description:
-        "Get exclusive access to new music from your favorite artists...",
-      amount: Math.floor(Math.random() * (1000 - 200 + 1)) + 200 + 0.99,
-    },
-    {
-      image:
-        "https://framerusercontent.com/images/JK25gXVlc0Gvhmz3TmtgyxkyB9U.png?scale-down-to=512",
-      title: "Music Five",
-      description:
-        "Get exclusive access to new music from your favorite artists...",
-      amount: Math.floor(Math.random() * (1000 - 200 + 1)) + 200 + 0.99,
-    },
-    {
-      image:
         "https://framerusercontent.com/images/AqMixhYJ4FV8elnBNDSg2MYwKbQ.png?scale-down-to=512",
-      title: "Music Six",
+      title: "Music Three",
       description:
         "Get exclusive access to new music from your favorite artists...",
       amount: Math.floor(Math.random() * (1000 - 200 + 1)) + 200 + 0.99,
@@ -175,10 +126,12 @@ export const musics = [
         "Get exclusive access to new music from your favorite artists...",
       amount: Math.floor(Math.random() * (1000 - 200 + 1)) + 200 + 0.99,
     },
+  ],
+  [
     {
       image:
         "https://framerusercontent.com/images/wh6m87pn6Su0ebn9tWiTf04pZlI.png?scale-down-to=512",
-      title: "Music Four",
+      title: "Music One",
       description:
         "Get exclusive access to new music from your favorite artists...",
       amount: Math.floor(Math.random() * (1000 - 200 + 1)) + 200 + 0.99,
@@ -186,7 +139,7 @@ export const musics = [
     {
       image:
         "https://framerusercontent.com/images/JK25gXVlc0Gvhmz3TmtgyxkyB9U.png?scale-down-to=512",
-      title: "Music Five",
+      title: "Music Two",
       description:
         "Get exclusive access to new music from your favorite artists...",
       amount: Math.floor(Math.random() * (1000 - 200 + 1)) + 200 + 0.99,
@@ -194,7 +147,7 @@ export const musics = [
     {
       image:
         "https://framerusercontent.com/images/AqMixhYJ4FV8elnBNDSg2MYwKbQ.png?scale-down-to=512",
-      title: "Music Six",
+      title: "Music Three",
       description:
         "Get exclusive access to new music from your favorite artists...",
       amount: Math.floor(Math.random() * (1000 - 200 + 1)) + 200 + 0.99,
@@ -225,35 +178,11 @@ export const musics = [
         "Get exclusive access to new music from your favorite artists...",
       amount: Math.floor(Math.random() * (1000 - 200 + 1)) + 200 + 0.99,
     },
-    {
-      image:
-        "https://framerusercontent.com/images/wh6m87pn6Su0ebn9tWiTf04pZlI.png?scale-down-to=512",
-      title: "Music Four",
-      description:
-        "Get exclusive access to new music from your favorite artists...",
-      amount: Math.floor(Math.random() * (1000 - 200 + 1)) + 200 + 0.99,
-    },
-    {
-      image:
-        "https://framerusercontent.com/images/JK25gXVlc0Gvhmz3TmtgyxkyB9U.png?scale-down-to=512",
-      title: "Music Five",
-      description:
-        "Get exclusive access to new music from your favorite artists...",
-      amount: Math.floor(Math.random() * (1000 - 200 + 1)) + 200 + 0.99,
-    },
-    {
-      image:
-        "https://framerusercontent.com/images/AqMixhYJ4FV8elnBNDSg2MYwKbQ.png?scale-down-to=512",
-      title: "Music Six",
-      description:
-        "Get exclusive access to new music from your favorite artists...",
-      amount: Math.floor(Math.random() * (1000 - 200 + 1)) + 200 + 0.99,
-    },
   ],
   [
     {
       image:
-        "https://framerusercontent.com/images/hvIbA5nxEafqpACqreLnQisvQ.png?scale-down-to=512",
+        "https://framerusercontent.com/images/wh6m87pn6Su0ebn9tWiTf04pZlI.png?scale-down-to=512",
       title: "Music One",
       description:
         "Get exclusive access to new music from your favorite artists...",
@@ -261,7 +190,7 @@ export const musics = [
     },
     {
       image:
-        "https://framerusercontent.com/images/wuUVJDdfH0XezYKS6g3P4VC1o.png?scale-down-to=512",
+        "https://framerusercontent.com/images/JK25gXVlc0Gvhmz3TmtgyxkyB9U.png?scale-down-to=512",
       title: "Music Two",
       description:
         "Get exclusive access to new music from your favorite artists...",
@@ -269,32 +198,8 @@ export const musics = [
     },
     {
       image:
-        "https://framerusercontent.com/images/chp0Kuf8Urv64W6fbzkzsCX0J8.png?scale-down-to=512",
-      title: "Music Three",
-      description:
-        "Get exclusive access to new music from your favorite artists...",
-      amount: Math.floor(Math.random() * (1000 - 200 + 1)) + 200 + 0.99,
-    },
-    {
-      image:
-        "https://framerusercontent.com/images/wh6m87pn6Su0ebn9tWiTf04pZlI.png?scale-down-to=512",
-      title: "Music Four",
-      description:
-        "Get exclusive access to new music from your favorite artists...",
-      amount: Math.floor(Math.random() * (1000 - 200 + 1)) + 200 + 0.99,
-    },
-    {
-      image:
-        "https://framerusercontent.com/images/JK25gXVlc0Gvhmz3TmtgyxkyB9U.png?scale-down-to=512",
-      title: "Music Five",
-      description:
-        "Get exclusive access to new music from your favorite artists...",
-      amount: Math.floor(Math.random() * (1000 - 200 + 1)) + 200 + 0.99,
-    },
-    {
-      image:
         "https://framerusercontent.com/images/AqMixhYJ4FV8elnBNDSg2MYwKbQ.png?scale-down-to=512",
-      title: "Music Six",
+      title: "Music Three",
       description:
         "Get exclusive access to new music from your favorite artists...",
       amount: Math.floor(Math.random() * (1000 - 200 + 1)) + 200 + 0.99,

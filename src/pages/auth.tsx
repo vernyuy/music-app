@@ -17,6 +17,8 @@ function Auth() {
   }
 
   const handleAuthentication = async () => {
+    const val = localStorage.getItem("authEvent");
+    if (val) setSignIn(JSON.parse(val));
     try {
       const { accessToken } = (await fetchAuthSession()).tokens ?? {};
       if (accessToken === undefined) {
@@ -31,8 +33,8 @@ function Auth() {
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const listener = (data: any) => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const listener = (data: { payload: { event: string } }) => {
     const { event } = data.payload;
     if (event == "signedIn") {
       setSignIn(true);
@@ -49,7 +51,7 @@ function Auth() {
     window.scrollTo({ top: 0, behavior: "smooth" });
     handleAuthentication();
     Hub.listen("auth", listener);
-  }, []);
+  }, [listener]);
 
   const handleSignOut = async () => {
     try {

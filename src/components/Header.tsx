@@ -10,6 +10,7 @@ const Header: React.FC = () => {
   const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
 
   // Methods
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleResize = () => {
     const currentWidth = window.innerWidth;
     setScreenWidth(currentWidth);
@@ -26,8 +27,6 @@ const Header: React.FC = () => {
     setShowMenu(!showMenu);
   };
 
-  // const location = useLocation();
-
   useEffect(() => {
     window.addEventListener("resize", handleResize);
     if (screenWidth <= 767) {
@@ -36,9 +35,11 @@ const Header: React.FC = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [screenWidth]);
+  }, [handleResize, screenWidth]);
 
   const handleAuthentication = async () => {
+    const val = localStorage.getItem("authEvent");
+    if (val) setSignIn(JSON.parse(val));
     try {
       const { accessToken } = (await fetchAuthSession()).tokens ?? {};
       if (accessToken === undefined) {
@@ -49,11 +50,12 @@ const Header: React.FC = () => {
         localStorage.setItem("authEvent", "true");
       }
     } catch (error) {
-      //
+      console.log("error: ", error);
     }
   };
 
-  const listener = (data: any) => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const listener = (data: { payload: { event: string } }) => {
     const { event } = data.payload;
     if (event == "signedIn") {
       setSignIn(true);
@@ -69,12 +71,11 @@ const Header: React.FC = () => {
   useEffect(() => {
     handleAuthentication();
     Hub.listen("auth", listener);
-  }, []);
+  }, [listener]);
 
   const handleSignOut = async () => {
     try {
-      handleAuthentication();
-      await signOut();
+      await signOut().then(() => handleAuthentication());
     } catch (error) {
       //
     }
@@ -100,20 +101,6 @@ const Header: React.FC = () => {
                 </div>
               </Link>
             </li>
-
-            {/* {location.pathname.startsWith("/artist/") ? (
-              <button
-                onClick={openChat}
-                className="group text-center font-medium"
-              >
-                <span>Chats</span>
-                <div className="w-full flex justify-center">
-                  <span className="hidden group-hover:block bg-red-500 h-[3px] w-10 rounded-full mt-[2px]"></span>
-                </div>
-              </button>
-            ) : (
-              <></>
-            )} */}
           </ul>
         </div>
 
