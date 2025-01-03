@@ -103,7 +103,7 @@ const closeChat = () => {
               <p className="font-bold heading">Your Chats</p>
               <button
                 onClick={closeChat}
-                className="text-2xl font-bold text-gray-500 border-[0.2px] h-[30px] w-[30px] flex justify-center items-center rounded-full"
+                className="text-3xl font-bold text-gray-500 h-[30px] w-[30px] flex justify-center items-center rounded-full"
               >
                 x
               </button>
@@ -137,20 +137,20 @@ const closeChat = () => {
                 {messages.map(({ id, content, senderId }) => (
                   <>
                     {senderId === userInfo.loginId ? (
-                      <div className="flex justify-end pr-4 mt-2">
+                      <div className="flex justify-end pr-4 mt-4">
                         <div key={id} className="flex justify-end">
                           <div className="mx-2 py-1 px-2.5 rounded-md border-[0.5px] border-red-500 mb-2 max-w-[300px]">
                             <p className="font-light">{content}</p>
                           </div>
                         </div>
 
-                        <div className="border-[0.5px] rounded-full h-[20px] w-[20px] flex justify-center items-center overflow-hidden">
+                        <div className=" rounded-full h-[20px] w-[20px] flex justify-center items-center overflow-hidden">
                           <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png" alt="" />
                         </div>
                       </div>
                     ) : (
-                        <div className="flex justify-start pl-4 mt-2">
-                        <div className="border-[0.5px] rounded-full h-[20px] w-[20px] flex justify-center items-center overflow-hidden">
+                        <div className="flex justify-start pl-4 mt-4">
+                        <div className="rounded-full h-[20px] w-[20px] flex justify-center items-center overflow-hidden">
                           <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png" alt="" />
                         </div>
                         <div key={id} className="flex justify-end">
@@ -160,12 +160,6 @@ const closeChat = () => {
                         </div>
 
                       </div>
-                    //   <div
-                    //     key={id}
-                    //     className="mx-2 p-1 rounded-md border-[0.5px] border-gray-400/40 my-2 w-fit  max-w-[300px] mt-2"
-                    //   >
-                    //     <p>{content}</p>
-                    //   </div>
                     )}
                   </>
                 ))}
@@ -182,8 +176,8 @@ const closeChat = () => {
                 placeholder="Start chats"
                 value={message}
                 rows={1}
-                className="w-[340px] p-2 rounded bg-transparent border-[0.5px] border-gray-400/40"
-              />
+                className="w-[340px] p-2 rounded-full bg-transparent border-[0.5px] focus:ring-red-500 focus:ring-[0.5px] focus:outline-none focus:border-red-500"
+              ></textarea>
               {
                 sending? <button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22.5 4.742A13 13 0 1 0 29 16"/></svg></button>:
                 <button
