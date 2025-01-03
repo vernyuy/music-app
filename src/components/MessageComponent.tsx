@@ -1,6 +1,5 @@
 import { FunctionComponent, useEffect, useRef, useState } from "react";
 import { generateClient } from "aws-amplify/data";
-import { useNavigate } from "react-router-dom";
 import type { Schema } from "../../amplify/data/resource";
 
 // Initialize the client for accessing the backend
@@ -9,13 +8,16 @@ const client = generateClient<Schema>();
 interface MessageComponentProps {
   chatOpen: boolean;
   artistId: string;
+  setIsOpenFun: (isOpen: boolean) => void;
 }
 
 const MessageComponent: FunctionComponent<MessageComponentProps> = ({
   chatOpen,
   artistId,
+  setIsOpenFun
 }) => {
   // State hooks
+  console.log(chatOpen)
   const isOpen = chatOpen;
   const [message, setMessage] = useState("");
   const [userInfo, setUserInfo] = useState<{
@@ -65,12 +67,8 @@ const MessageComponent: FunctionComponent<MessageComponentProps> = ({
     }
   }, []);
 
-  const navigate = useNavigate();
-
-  // Close the chat and navigate to artist page
-  const closeChat = (): void => {
-    const artistId = localStorage.getItem("artistId");
-    navigate(`/artist/${artistId}`, { state: { openChat: false } });
+const closeChat = () => {
+    setIsOpenFun(false);
   };
 
   // Send a new message

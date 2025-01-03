@@ -27,12 +27,15 @@ const Artist: React.FC = () => {
 
   useEffect(() => {
     setOpenChat(location.state?.openChat);
-  }, [location.state?.openChat, openChat]);
+  }, [location.state?.openChat]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
+  const toggleChat = (data: boolean)=>{
+    setOpenChat(data)
+  }
   return (
     <>
       <div className="w-full pt-12 md:pt-40">
@@ -101,9 +104,9 @@ const Artist: React.FC = () => {
             </div>
           </div>
         </div>
-
-        {<p className="p-40">Chat is open: {openChat.toString()}</p>}
-        <MessageComponent chatOpen={openChat} artistId={artistId} />
+        {
+          openChat?<MessageComponent setIsOpenFun={toggleChat} chatOpen={openChat} artistId={artistId} />:<></>
+        }
       </div>
     </>
   );

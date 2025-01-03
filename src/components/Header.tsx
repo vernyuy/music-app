@@ -54,8 +54,8 @@ const Header: React.FC = () => {
     }
   };
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const listener = (data: { payload: { event: string } }) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any, react-hooks/exhaustive-deps
+  const listener = (data: any) => {
     const { event } = data.payload;
     if (event == "signedIn") {
       setSignIn(true);
