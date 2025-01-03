@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
 import Stripe from "stripe";
 
 interface CardProps {
@@ -19,8 +18,6 @@ const CardComponent: React.FC<CardProps> = ({
   isFullWidth,
 }) => {
   const [loading, setLoading] = useState(false);
-  // const navigate = useNavigate();
-
   const stripePayment = async () => {
     setLoading(true);
     console.log("card-clicked", card);
@@ -51,7 +48,7 @@ const CardComponent: React.FC<CardProps> = ({
       payment_method_types: ["card"],
       line_items: items,
       mode: "payment",
-      success_url: "http://localhost:5173",
+      success_url: "https://master.d1v0kcm3kpz2cc.amplifyapp.com",
     });
 
     if (session.url) {
@@ -64,10 +61,6 @@ const CardComponent: React.FC<CardProps> = ({
     setLoading(false);
   };
 
-  // const openChat = (): void => {
-  //   localStorage.setItem("artistId", card.title);
-  //   navigate(`/artist/${card.title}`, { state: { openChat: false } });
-  // };
   return (
     <div
       data-aos="zoom-in-up"
@@ -78,8 +71,6 @@ const CardComponent: React.FC<CardProps> = ({
              : "sm:w-1/2 md:w-[calc((100%-32px)/2.5)] lg:w-[calc((100%-32px)/3.5)]"
          }`}
       style={{ background: gradient }}
-      // onClick={stripePayment}
-      // onClick={openChat}
     >
       <div className="shadow-lg overflow-hidden">
         <img
