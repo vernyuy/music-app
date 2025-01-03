@@ -7,10 +7,12 @@ import Auth from "./pages/auth";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import Artists from "./pages/artists";
+import Artist from "./pages/artist";
 
 function App() {
   useEffect(() => {
-    AOS.init({ duration: 1000 });
+    AOS.init({ offset: 170, easing: "ease-in-out", duration: 1000 });
   }, []);
 
   const theme: Theme = {
@@ -34,6 +36,8 @@ function App() {
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/explore" element={<Explore />} />
+              <Route path="/artists" element={<Artists />} />
+              <Route path="/artist/:id" element={<Artist />} />
               <Route path="/auth" element={<Auth />} />
             </Routes>
           </div>

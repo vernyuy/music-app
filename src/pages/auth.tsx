@@ -45,6 +45,7 @@ function Auth() {
   };
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     handleAuthentication();
     Hub.listen("auth", listener);
   }, []);

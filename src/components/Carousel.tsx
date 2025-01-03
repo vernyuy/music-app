@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
-import CardComponent from "./CardComponent";
-import { cards, gradients } from "../assets/constants";
+import { artists, gradients } from "../assets/constants";
+import ArtistCard from "./ArtistCard";
 
 const Carousel: React.FC = () => {
   const cardContainerRef = useRef<HTMLDivElement | null>(null);
@@ -11,7 +11,7 @@ const Carousel: React.FC = () => {
     const container = cardContainerRef.current;
     if (container) {
       const cardWidth = container.firstElementChild?.clientWidth || 0;
-      const scrollAmount = cardWidth * 2; // Move 2 full cards
+      const scrollAmount = cardWidth * 2; // Move 2 full artists
       container.scrollBy({ left: -scrollAmount, behavior: "smooth" });
     }
   };
@@ -20,7 +20,7 @@ const Carousel: React.FC = () => {
     const container = cardContainerRef.current;
     if (container) {
       const cardWidth = container.firstElementChild?.clientWidth || 0;
-      const scrollAmount = cardWidth * 2; // Move 2 full cards
+      const scrollAmount = cardWidth * 2; // Move 2 full artists
       container.scrollBy({ left: scrollAmount, behavior: "smooth" });
     }
   };
@@ -74,12 +74,12 @@ const Carousel: React.FC = () => {
       {/* Card Container */}
       <div
         ref={cardContainerRef}
-        className="flex sm:flex-row gap-6 flex-col overflow-x-scroll scrollbar-hide scroll-smooth"
+        className="flex sm:flex-row gap-6 overflow-y-hidden flex-col overflow-x-scroll scrollbar-hide scroll-smooth"
       >
-        {cards.map((card, index) => (
-          <CardComponent
+        {artists.map((artist, index) => (
+          <ArtistCard
             key={index}
-            card={card}
+            artist={artist}
             gradient={gradients[index]}
             isFullWidth={false}
           />

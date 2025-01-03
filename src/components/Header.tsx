@@ -15,8 +15,8 @@ const Header: React.FC = () => {
     setScreenWidth(currentWidth);
 
     if (
-      (currentWidth > 767 && !showMenu) ||
-      (currentWidth <= 767 && showMenu)
+      (currentWidth > 1024 && !showMenu) ||
+      (currentWidth <= 1024 && showMenu)
     ) {
       setShowMenu(!showMenu);
     }
@@ -84,15 +84,15 @@ const Header: React.FC = () => {
   return (
     <nav
       className={`${
-        showMenu ? "bg-[#131313] md:bg-black md:bg-opacity-40" : ""
-      } md:fixed w-full z-20 top-0 start-0 p-5 md:px-3.5 md:py-6 transition-all ease-in-out duration-700`}
+        showMenu ? "bg-[#131313] lg:bg-black lg:bg-opacity-40" : ""
+      } lg:fixed w-full z-20 top-0 start-0 p-5 lg:px-3.5 lg:py-6 transition-all ease-in-out duration-700`}
     >
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto transition-all ease-in-out duration-700">
         <div className="flex items-center space-x-10 rtl:space-x-reverse">
           <Link to="/">
-            <img src={Logo} className="h-6 md:h-7" alt="Music app" />
+            <img src={Logo} className="h-6 lg:h-7" alt="Music app" />
           </Link>
-          <ul className="max-md:hidden flex gap-9">
+          <ul className="max-lg:hidden flex gap-9">
             <li className="group text-center font-medium">
               <Link to="/explore">
                 <span>Explore</span>
@@ -101,19 +101,19 @@ const Header: React.FC = () => {
                 </div>
               </Link>
             </li>
-            <li className="group text-center font-medium">
+            {/* <li className="group text-center font-medium">
               <span>My Library</span>
               <div className="w-full flex justify-center">
                 <span className="hidden group-hover:block bg-red-500 h-[3px] w-10 rounded-full mt-[2px]"></span>
               </div>
-            </li>
+            </li> */}
           </ul>
         </div>
 
         <button
           type="button"
           aria-label="Toggle Menu"
-          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden"
+          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden"
           onClick={toggleMenu}
         >
           {!showMenu ? (
@@ -141,56 +141,64 @@ const Header: React.FC = () => {
         </button>
 
         {showMenu && (
-          <div className="w-full md:block md:w-auto overflow-hidden transition-all ease-in-out duration-200">
-            <ul className="font-medium md:flex md:items-center flex flex-col py-4 md:p-0 mt-4 rounded-lg md:flex-row md:space-x-6 rtl:space-x-reverse md:mt-0 md:border-0">
-              <li className="hidden max-md:block">
+          <div className="w-full lg:block lg:w-auto overflow-hidden transition-all ease-in-out duration-200">
+            <ul className="font-medium lg:flex lg:items-center flex flex-col py-4 lg:p-0 mt-4 rounded-lg lg:flex-row lg:space-x-6 rtl:space-x-reverse lg:mt-0 lg:border-0">
+              <li className="hidden max-lg:block">
                 <Link
                   to="/explore"
-                  className="md:px-6 max-md:text-2xl md:bg-black py-[6px] font-bold md:font-medium hover:border-white rounded-full border-[1.8px] border-transparent"
+                  className="lg:px-6 max-lg:text-2xl lg:bg-black py-[6px] font-bold lg:font-medium hover:border-white rounded-full border-[1.8px] border-transparent"
                 >
                   Explore
                 </Link>
               </li>
-              <li className="hidden max-md:block my-4">
+              {/* <li className="hidden max-lg:block my-4">
                 <Link
                   to="/"
-                  className="md:px-6 max-md:text-2xl md:bg-black py-[6px] font-bold md:font-medium hover:border-white rounded-full border-[1.8px] border-transparent"
+                  className="lg:px-6 max-lg:text-2xl lg:bg-black py-[6px] font-bold lg:font-medium hover:border-white rounded-full border-[1.8px] border-transparent"
                 >
                   My Library
                 </Link>
+              </li> */}
+              <li className="gap-2 lg:flex block max-lg:space-y-4">
+                {/* <div>
+                  <Link
+                    to="/"
+                    className="lg:px-6 max-lg:text-2xl lg:bg-black py-[6px] font-bold lg:font-medium hover:border-white rounded-full border-[1.8px] border-transparent"
+                  >
+                    Join our Community
+                  </Link>
+                </div> */}
+                <div>
+                  <Link
+                    to="/artists"
+                    className="lg:px-6 max-lg:text-2xl lg:bg-black py-[6px] font-bold lg:font-medium hover:border-white rounded-full border-[1.8px] border-transparent"
+                  >
+                    Artists
+                  </Link>
+                </div>
               </li>
-              <li>
-                <Link
-                  to="/"
-                  className="md:px-6 max-md:text-2xl md:bg-black py-[6px] font-bold md:font-medium hover:border-white rounded-full border-[1.8px] border-transparent"
-                >
-                  For Artists
-                </Link>
-              </li>
-              <li className="h-5 hidden md:block bg-gray-50 w-[1.5px] bg-opacity-30"></li>
+              <li className="h-5 hidden lg:block bg-gray-50 w-[1.5px] bg-opacity-30"></li>
 
               {signIn ? (
-                <li className="max-md:mt-5 max-md:mb-2">
+                <li className="max-lg:mt-5 max-lg:mb-2">
                   <button
-                    className="px-6 max-md:mt-3 py-[6px] max-md:w-full font-medium hover:border-white bg-black rounded-full hover:border-[1.8px] border-[1.5px] border-gray-50 border-opacity-45"
+                    className="px-6 max-lg:mt-3 py-[6px] max-lg:w-full font-medium hover:border-white bg-black rounded-full hover:border-[1.8px] border-[1.5px] border-gray-50 border-opacity-45"
                     onClick={() => handleSignOut()}
                   >
                     Sign Out
                   </button>
                 </li>
               ) : (
-                <li className="md:flex max-md:mt-5 md:items-center justify-center gap-3 max-md:mb-2">
-                  <Link
-                    to="/auth"
-                    className="px-6 py-[6px] max-md:w-full font-medium hover:border-white bg-black rounded-full border-[1.8px] border-transparent"
-                  >
-                    Log In
+                <li className="lg:flex max-lg:mt-5 lg:items-center justify-center gap-3 max-lg:mb-2 text-center">
+                  <Link to="/auth">
+                    <div className="px-6 py-[6px] max-lg:w-full font-medium hover:border-white bg-black rounded-full border-[1.8px] border-transparent">
+                      Log In
+                    </div>
                   </Link>
-                  <Link
-                    to="/auth"
-                    className="px-6 max-md:mt-3 py-[6px] max-md:w-full font-medium hover:border-white bg-black rounded-full hover:border-[1.8px] border-[1.5px] border-gray-50 border-opacity-45"
-                  >
-                    Sign Up
+                  <Link to="/auth">
+                    <div className="px-6 max-lg:mt-3 py-[6px] max-lg:w-full font-medium hover:border-white bg-black rounded-full hover:border-[1.8px] border-[1.5px] border-gray-50 border-opacity-45">
+                      Sign Up
+                    </div>
                   </Link>
                 </li>
               )}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Stripe from "stripe";
 
 interface CardProps {
@@ -17,8 +17,13 @@ const CardComponent: React.FC<CardProps> = ({
   gradient,
   isFullWidth,
 }) => {
+  const [loading, setLoading] = useState(false); // Step 1: Create a loading state
+
   const stripePayment = async () => {
     console.log("card-clicked", card);
+
+    // Step 2: Disable button and show loader
+    setLoading(true);
 
     const stripe = new Stripe(
       "sk_test_51NVJ4RECpTjJRRCodmsyMIK613vbK0ElhyUwMReszzx6qs8FzZQDdi8VtZ5DjYkn5gNQryjTDMNkf01QLKVwxwTP00DT8HavNL",
@@ -42,30 +47,37 @@ const CardComponent: React.FC<CardProps> = ({
       },
     ];
 
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card"],
-      line_items: items,
-      mode: "payment",
-      success_url: "https://main.d1v0kcm3kpz2cc.amplifyapp.com",
-    });
+    try {
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ["card"],
+        line_items: items,
+        mode: "payment",
+        success_url: "https://main.d1v0kcm3kpz2cc.amplifyapp.com",
+      });
 
-    if (session.url) {
-      console.log("Success");
-      window.open(session.url, "_blank");
-    } else {
-      console.log("Failed");
+      if (session.url) {
+        console.log("Success");
+        window.open(session.url, "_blank");
+      } else {
+        console.log("Failed");
+      }
+    } catch (error) {
+      console.error("Stripe payment error: ", error);
+    } finally {
+      // Step 3: Reset loading state after payment attempt
+      setLoading(false);
     }
   };
 
   return (
     <div
+      data-aos="zoom-in-up"
       className={`flex-shrink-0 p-4 snap-center rounded-xl hover:cursor-pointer ${
         isFullWidth
           ? "w-full"
           : "sm:w-1/2 md:w-[calc((100%-32px)/2.5)] lg:w-[calc((100%-32px)/3.5)]"
       }`}
       style={{ background: gradient }}
-      onClick={stripePayment}
     >
       <div className="shadow-lg overflow-hidden">
         <img
@@ -79,6 +91,82 @@ const CardComponent: React.FC<CardProps> = ({
             <span className="text-xl md:text-2xl">${card.amount}</span>
           </div>
           <p>{card.description}</p>
+
+          {/* Pay Now Button */}
+          <button
+            onClick={stripePayment}
+            disabled={loading}
+            className="mt-5  w-full py-2 px-4 bg-[#131313] text-white text-lg  rounded-full hover:bg-[#444] transition"
+          >
+            {loading ? (
+              <div className="flex justify-center items-center py-1">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  className="h-5"
+                >
+                  <g>
+                    <circle
+                      cx="12"
+                      cy="2.5"
+                      r="1.5"
+                      fill="currentColor"
+                      opacity=".14"
+                    />
+                    <circle
+                      cx="16.75"
+                      cy="3.77"
+                      r="1.5"
+                      fill="currentColor"
+                      opacity=".29"
+                    />
+                    <circle
+                      cx="20.23"
+                      cy="7.25"
+                      r="1.5"
+                      fill="currentColor"
+                      opacity=".43"
+                    />
+                    <circle
+                      cx="21.5"
+                      cy="12"
+                      r="1.5"
+                      fill="currentColor"
+                      opacity=".57"
+                    />
+                    <circle
+                      cx="20.23"
+                      cy="16.75"
+                      r="1.5"
+                      fill="currentColor"
+                      opacity=".71"
+                    />
+                    <circle
+                      cx="16.75"
+                      cy="20.23"
+                      r="1.5"
+                      fill="currentColor"
+                      opacity=".86"
+                    />
+                    <circle cx="12" cy="21.5" r="1.5" fill="currentColor" />
+                    <animateTransform
+                      attributeName="transform"
+                      calcMode="discrete"
+                      dur="0.75s"
+                      repeatCount="indefinite"
+                      type="rotate"
+                      values="0 12 12;30 12 12;60 12 12;90 12 12;120 12 12;150 12 12;180 12 12;210 12 12;240 12 12;270 12 12;300 12 12;330 12 12;360 12 12"
+                    />
+                  </g>
+                </svg>
+                <span className="pl-2 text-sm font-semibold">
+                  Please wait...
+                </span>
+              </div>
+            ) : (
+              <span className="heading font-bold text-sm">BUY NOW</span>
+            )}
+          </button>
         </div>
       </div>
     </div>
